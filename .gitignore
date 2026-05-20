@@ -1,0 +1,25 @@
+# Python cache/build
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+
+# Editors/IDE
+.vscode/
+.idea/
+
+# Runtime artifacts
+*.log
+
+# Downloaded model binaries
+models/*.task
