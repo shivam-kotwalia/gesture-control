@@ -5,6 +5,7 @@ import time
 from mediapipe.tasks.python import vision
 import os
 
+# Resolve the hand landmark model relative to this script so execution is cwd-independent.
 # Get the model path
 model_path = os.path.join(os.path.dirname(__file__), "models/hand_landmarker.task")
 
@@ -13,6 +14,7 @@ if not os.path.exists(model_path):
     print("Please run: python3 setup_models.py")
     exit(1)
 
+# Configure a single-hand detector tuned for stable real-time tracking.
 # Create HandLandmarker with the model
 base_options = mp.tasks.BaseOptions(model_asset_path=model_path)
 options = vision.HandLandmarkerOptions(
@@ -24,13 +26,14 @@ options = vision.HandLandmarkerOptions(
 )
 hand_landmarker = vision.HandLandmarker.create_from_options(options)
 
-# For drawing
+# Open the default webcam (index 0).
 mp_drawing = vision.drawing_utils
 
 cap = cv2.VideoCapture(0)
 
 last_action = ""
 last_time = 0
+# Prevent repeated key presses when a gesture is held across multiple frames.
 cooldown = 1.5
 
 def fingers_up(hand_landmarks):
@@ -56,6 +59,7 @@ while True:
     if not success:
         break
 
+    # Mirror the frame so hand movement feels natural to the person on camera.
     frame = cv2.flip(frame, 1)
     h, w, c = frame.shape
 
@@ -98,6 +102,7 @@ while True:
                 x2, y2 = int(end.x * w), int(end.y * h)
                 cv2.line(frame, (x1, y1), (x2, y2), (0, 255, 0), 1)
 
+            # Reduce detailed landmarks into a simple "how many fingers are up" signal.
             fingers = fingers_up(hand_landmarks)
             total = fingers.count(1)
 
@@ -105,6 +110,7 @@ while True:
 
             if current_time - last_time > cooldown:
 
+                # Gesture-to-action mapping for slideshow control.
                 # OPEN PALM -> NEXT SLIDE (4 fingers up)
                 if total == 4:
                     pyautogui.press("right")
@@ -141,6 +147,7 @@ while True:
 
     cv2.imshow("Google Slides Gesture Control", frame)
 
+    # Press q in the preview window to stop the app.
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
