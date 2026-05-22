@@ -197,6 +197,12 @@ Use this project during:
 
 ---
 
+# Live MediaPipe 
+![MediaPipe Hand Tracking Demo](https://google-ai-edge.github.io/mediapipe-samples-web/#/vision/hand_landmarker)
+![Google AI Media Pipe] (https://ai.google.dev/edge/mediapipe/solutions/guide)
+
+---
+
 # 👨‍💻 Built With AI + Computer Vision
 
 A futuristic interaction system powered by hand tracking and real-time gesture recognition.
