@@ -49,11 +49,20 @@ to detect hand gestures and convert them into presentation controls like:
 
 # 📦 Installation
 
-## Step 1 — Clone Project
+## Step 0 - Ensure Python is installed
+
+For Linux and Mac system, please use `python3` instead of `python` in the commands below </br>
+
+Check if python is installed and available in your system PATH on VSCode Terminal (Terminal → New Terminal):
+```bash
+python -V
+```
+
+---
+## Step 1 — Download the code
 
 ```bash
-git clone https://github.com/shivam-kotwalia/gesture-control
-cd gesture-control
+https://github.com/shivam-kotwalia/gesture-control/archive/refs/heads/main.zip
 ```
 
 ---
@@ -61,13 +70,13 @@ cd gesture-control
 ## Step 2 — Install Dependencies
 
 ```bash
-pip3 install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ## Step 3 — Download Hand Landmarker Model
 
 ```bash
-python3 setup_models.py
+python setup_models.py
 ```
 
 ---
@@ -75,7 +84,7 @@ python3 setup_models.py
 # ▶️ Run the App
 
 ```bash
-python3 main.py
+python main.py
 ```
 
 ---
